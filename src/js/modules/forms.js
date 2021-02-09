@@ -1,18 +1,15 @@
+import checkNumInputs from './checkNumInputs';
+
 const forms = () => {
     const form = document.querySelectorAll('form'),
-          inputs = document.querySelectorAll('input'),
-          phoneInputs = document.querySelectorAll('input[name="user_phone"]');
+          inputs = document.querySelectorAll('input');
 
-    phoneInputs.forEach(item => {
-        item.addEventListener('input', () => {
-            item.value = item.value.replace(/\D/, '');
-        });
-    });
+    checkNumInputs('input[name="user_phone"]');
 
     const message = {
         loading: 'Загрузка...',
-        success: 'Спасибо! Скоро мы с Вами скоро свяжемся',
-        failure: 'Что-топошло не так'
+        success: 'Спасибо! Мы с Вами скоро свяжемся',
+        failure: 'Что-то пошло не так'
     };
 
     const postData = async (url, data) => {
