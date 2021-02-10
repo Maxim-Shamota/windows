@@ -1,4 +1,4 @@
-const modals = () => {
+const modals = (state) => {
     function bindModal(triggerSelector, modalSelector, closeSelector, closeClickOverlay = true) {
         const trigger = document.querySelectorAll(triggerSelector),
               modal = document.querySelector(modalSelector),
@@ -10,6 +10,18 @@ const modals = () => {
                 if (e.target) {
                     e.preventDefault();
                 }
+
+                if (modal.classList.contains('popup_calc_profile')) {
+					if (!state.form || !state.width || !state.height) {
+						event.removeEventListener();
+					}
+				}
+
+				if (modal.classList.contains('popup_calc_end')) {
+					if (!state.type || !state.profile) {
+						event.removeEventListener();
+					}
+				}
 
                 windows.forEach(item => {
                     item.style.display = 'none';
